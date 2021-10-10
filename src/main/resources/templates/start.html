@@ -18,32 +18,8 @@
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
-<nav class="navbar navbar-expand-sm  bg-light navbar-light fixed-top">
-    <a class="navbar-brand" href="#">
-        <img src="../static/images/homePageIcon.png/" alt="Logo" style="width:40px;">
-    </a>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#section1">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#section2">Category</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#section3">Shopping Cart</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#section4">Recent Orders</a>
-        </li>
-    </ul>
-    <form class="form-inline" action="#" th:action="@{/Food}" method="get">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchTerm">
-        <button class="btn btn-success" type="submit" vaue="0">Search</button>
-    </form>
-    <a class="navbar-brand" href="#section3">
-        <img src="../static/images/shoppingcart.png/" alt="Logo" style="width:40px;">
-    </a>
-</nav>
+<div th:replace="fragments/topnav :: navbar">
+</div>
 
 <div id="section1"  class="container-fluid bg-start" style="padding-top:70px;padding-bottom:70px">
     <h1>Home</h1>
