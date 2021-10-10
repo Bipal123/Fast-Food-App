@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -50,7 +49,7 @@ public class FastFoodController {
      * This is for search bar on the navigation bar.
      * This happens when the user click "search".
      * */
-    @GetMapping("/Food")
+    @GetMapping("/SearchFood")
     public ResponseEntity searchFood(@RequestParam(value="searchTerm",required = false,defaultValue = "None") String searchTerm){
         String newSearchTerm = searchTerm + "";
         return new ResponseEntity(HttpStatus.OK);
@@ -102,8 +101,8 @@ public class FastFoodController {
         return food;
     }
     @PostMapping(value="/Food/{id}/", consumes ="application/json", produces = "application/json")
-    public Food updateFood(@PathVariable("id") String id){
-        Food newFood = new Food();
+    public Food updateFood(@PathVariable("id") int id){
+        Food newFood;
         newFood = foodService.getFoodItemById(id);
         foodService.updateFoodItem(id);
         return newFood;

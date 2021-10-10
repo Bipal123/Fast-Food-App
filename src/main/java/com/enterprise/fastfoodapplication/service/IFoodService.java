@@ -17,7 +17,7 @@ public interface IFoodService {
      * @param id It is a string (maybe int?) that is compared with foodId
      * @return A Food object containing the details of the food item if found in database, otherwise return NULL
      */
-    Food getFoodItemById(String id);
+    Food getFoodItemById(int id);
 
     /**
      * This method is used to return a HashMap of all the food items that exist within the database. Return NULL
@@ -30,8 +30,9 @@ public interface IFoodService {
      * This method invokes another method within the DAO (persistence) package and save the Food item
      * to the database.
      * @param food This is a Food object containing details that will be saved in the db.
+     * @return Returns the created Food Object
      */
-    void createFoodItem(Food food);
+    Food createFoodItem(Food food) throws Exception;
 
     /**
      * This method is used to update details about an existing food Item based off of its foodId value.
@@ -39,7 +40,7 @@ public interface IFoodService {
      * our parameter. Throw exception if there is no food with foodId == id.
      * @param id It is a string (maybe int?) that is compared with foodId
      */
-    void updateFoodItem(String id);
+    void updateFoodItem(int id);
 
     /** This method is used to remove an existing food Item based off of its foodId value.
      * We probably need to invoke a delete operation within the persistence layer and pass it id as our parameter.
