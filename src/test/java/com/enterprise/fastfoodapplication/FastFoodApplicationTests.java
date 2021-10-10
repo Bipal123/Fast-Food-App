@@ -79,7 +79,7 @@ class FastFoodApplicationTests {
         food = foodService.getFoodByCategory("snacks");
     }
 
-    private void thenReturnFoodCategorySnacks() {
+    private void thenReturnFoodCategorySnacks() throws Exception{
         String foodCategory = food.getFoodCategory();
         assertEquals("Snacks", foodCategory);
     }
