@@ -60,4 +60,13 @@ public class ShoppingCart {
         String cartOrderFoodId=order.getFood().getFoodId();
         orders.remove(cartOrderFoodId);
     }
+
+    public double totalCostWithTax(){
+        double totalWithTax = taxCalculator() +totalEstimatedCostOfEntireCart();
+        return totalWithTax;
+    }
+    public double taxCalculator(){
+        double tax = totalEstimatedCostOfEntireCart() * .0575;
+        return tax;
+    }
 }

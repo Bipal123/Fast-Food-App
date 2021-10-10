@@ -46,4 +46,11 @@ public class FoodServiceStub implements IFoodService {
     public void removeFoodItem(String id) {
 
     }
+    @Override
+    public Food getFoodByCategory(String category) {
+        Food food = new Food();
+        food.setFoodCategory("Snacks");
+        food.setFoodName("Potato Chips");
+        return food;
+    }
 }

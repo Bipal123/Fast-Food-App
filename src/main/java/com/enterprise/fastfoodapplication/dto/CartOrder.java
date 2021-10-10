@@ -28,5 +28,4 @@ class CartOrder {
         double estimatedTotal = food.getFoodPrice() * foodQuantity;
         return estimatedTotal;
     }
-
 }
