@@ -6,7 +6,6 @@ import com.enterprise.fastfoodapplication.service.FoodServiceStub;
 import com.enterprise.fastfoodapplication.service.IFoodService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
@@ -30,6 +29,7 @@ class FastFoodApplicationTests {
     @Test
     void getFoodItemById_returnsItalianPizzaForID9() throws Exception {
         givenFoodsDataAreAvailable();
+        whenFoodWithID9HasNameItalianPizza();
         whenSearchFoodWithID9();
         thenReturnOneItalianPizzaFoodForID9();
     }
@@ -39,7 +39,14 @@ class FastFoodApplicationTests {
         foodService = new FoodServiceStub(foodDao);
     }
 
-    private void whenSearchFoodWithID9() {
+    private void whenFoodWithID9HasNameItalianPizza() throws Exception {
+        Food italianPizza = new Food();
+        italianPizza.setFoodId(9);
+        italianPizza.setFoodName("Italian Pizza");
+        Mockito.when(foodDao.getFoodItemById(9)).thenReturn(italianPizza);
+    }
+
+    private void whenSearchFoodWithID9() throws Exception {
         food = foodService.getFoodItemById(9);
     }
 
