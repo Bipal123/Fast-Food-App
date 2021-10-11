@@ -4,12 +4,14 @@ import com.enterprise.fastfoodapplication.dto.Food;
 import com.enterprise.fastfoodapplication.dto.OrderHistory;
 import com.enterprise.fastfoodapplication.service.IFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,11 +63,21 @@ public class FastFoodController {
      * */
     @GetMapping("/Food")
     public ResponseEntity fetchAllFood(){
-        return new ResponseEntity(HttpStatus.OK);
+        try {
+            List<Food> allFood = foodService.getAllFoodItems();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(allFood, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            /*TO DO Logging*/
+        }
+
     }
 
     /**
-     * Fetch a food with the given ID.
+     * Fetch a food object with the given ID.
      *
      * Given the parameter id, find a specimen that corresponds to this unique ID.
      *
@@ -76,8 +88,17 @@ public class FastFoodController {
      * @param id a unique identifier for this food
      */
     @GetMapping("/Food/{id}/")
-    public ResponseEntity fetchFoodById(@PathVariable("id") String id){
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity fetchFoodById(@PathVariable("id") int id){
+        try {
+            Food foundFood = foodService.getFoodItemById(id);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(foundFood, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            /*TO DO Logging*/
+        }
     }
 
     /**
@@ -91,24 +112,43 @@ public class FastFoodController {
      * @return the newly created food object.
      */
     @PostMapping(value="/Food", consumes ="application/json", produces = "application/json")
-    public Food createFood(@RequestBody Food food){
-        Food newFood = null;
+    public ResponseEntity createFood(@RequestBody Food food){
         try {
-            foodService.createFoodItem(food);
-        } catch (Exception e){
+            Food createdFood = foodService.createFoodItem(food);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(createdFood, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
             logger.log(Level.WARNING, "Failed to create food item");
+            return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            /*TO DO Logging*/
         }
-        return food;
     }
+
     @PostMapping(value="/Food/{id}/", consumes ="application/json", produces = "application/json")
-    public Food updateFood(@PathVariable("id") int id){
-        Food newFood;
-        newFood = foodService.getFoodItemById(id);
-        foodService.updateFoodItem(id);
-        return newFood;
+    public ResponseEntity updateFood(@PathVariable("id") int id, @RequestBody Food food){
+        try {
+            Food updateFoodItem = foodService.updateFoodItem(id, food);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(updateFoodItem, headers, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.log(Level.WARNING, "Failed to create food item");
+            return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            /*TO DO Logging*/
+        }
     }
+
     @DeleteMapping("/Food/{id}/")
-    public ResponseEntity deleteFood(@PathVariable("id") String id){
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity removeFood(@PathVariable("id") String id){
+        try {
+            foodService.removeFoodItem(Integer.parseInt(id));
+            return new ResponseEntity(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+            /*TO DO Logging*/
+        }
     }
 }
