@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 class FastFoodApplicationTests {
-
+    @Autowired
     private IFoodService foodService;
     private Food food = new Food();
 
@@ -62,7 +62,8 @@ class FastFoodApplicationTests {
     }
 
     private void thenCreateNewFoodRecordAndReturnIt() throws  Exception{
-        Food createdFood = foodService.createFoodItem(food);
+        foodService.createFoodItem(food);
+        Food createdFood = foodService.getFoodItemById(Integer.parseInt(food.getFoodId()));
         assertEquals(food, createdFood);
         verify(foodDao, atLeastOnce()).createFoodItem(food);
     }

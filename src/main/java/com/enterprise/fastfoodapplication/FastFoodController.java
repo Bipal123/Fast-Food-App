@@ -28,7 +28,7 @@ public class FastFoodController {
 
     private static final Logger logger = Logger.getLogger("com.enterprise.fastfoodapplication.FastFoodController");
 
-    @Autowired
+
     IFoodService foodService;
 
     @RequestMapping("/")
