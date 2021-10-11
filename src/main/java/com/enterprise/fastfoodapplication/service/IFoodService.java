@@ -2,7 +2,7 @@ package com.enterprise.fastfoodapplication.service;
 
 import com.enterprise.fastfoodapplication.dto.Food;
 
-import java.util.Map;
+import java.util.List;
 
 /**
  * This interface (when implemented) will allow us to manage Food items by providing CRUD operations that update the
@@ -17,14 +17,14 @@ public interface IFoodService {
      * @param id It is a string (maybe int?) that is compared with foodId
      * @return A Food object containing the details of the food item if found in database, otherwise return NULL
      */
-    Food getFoodItemById(int id);
+    Food getFoodItemById(int id) throws Exception;
 
     /**
      * This method is used to return a HashMap of all the food items that exist within the database. Return NULL
      * if food Table is empty in database.
      * @return a HashMap that has String as key and Food object as value.
      */
-    Map<String, Food> getAllFoodItems();
+    List<Food> getAllFoodItems() throws Exception;
 
     /**
      * This method invokes another method within the DAO (persistence) package and save the Food item
@@ -38,15 +38,16 @@ public interface IFoodService {
      * This method is used to update details about an existing food Item based off of its foodId value.
      * We probably need to invoke a edit operation within the persistence layer and pass it a Food object as
      * our parameter. Throw exception if there is no food with foodId == id.
-     * @param id It is a string (maybe int?) that is compared with foodId
+     * @param id It is a int that is compared with foodId
+     * @return updated food item
      */
-    void updateFoodItem(int id);
+    Food updateFoodItem(int id, Food food) throws Exception;
 
     /** This method is used to remove an existing food Item based off of its foodId value.
      * We probably need to invoke a delete operation within the persistence layer and pass it id as our parameter.
      * Throw exception if there is no food with foodId == id.
      * @param id It is a string (maybe int?) that is compared with foodId
      */
-    void removeFoodItem(String id);
+    void removeFoodItem(int id) throws Exception;
 
 }

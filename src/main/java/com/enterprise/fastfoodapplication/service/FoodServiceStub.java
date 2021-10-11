@@ -2,13 +2,15 @@ package com.enterprise.fastfoodapplication.service;
 
 import com.enterprise.fastfoodapplication.dao.IFoodDao;
 import com.enterprise.fastfoodapplication.dto.Food;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
+import java.util.List;
 
 @Component
 public class FoodServiceStub implements IFoodService {
 
+    @Autowired
     private IFoodDao foodDao;
 
     public FoodServiceStub() {
@@ -20,16 +22,13 @@ public class FoodServiceStub implements IFoodService {
     }
 
     @Override
-    public Food getFoodItemById(int id) {
-        Food food = new Food();
-        food.setFoodId("9");
-        food.setFoodName("Italian Pizza");
-        return food;
+    public Food getFoodItemById(int id) throws Exception {
+        return foodDao.getFoodItemById(id);
     }
 
     @Override
-    public Map<String, Food> getAllFoodItems() {
-        return null;
+    public List<Food> getAllFoodItems() throws Exception {
+        return foodDao.getAllFoodItems();
     }
 
     @Override
@@ -38,12 +37,12 @@ public class FoodServiceStub implements IFoodService {
     }
 
     @Override
-    public void updateFoodItem(int id) {
-
+    public Food updateFoodItem(int id, Food food) throws Exception {
+        return foodDao.updateFoodItem(id, food);
     }
 
     @Override
-    public void removeFoodItem(String id) {
-
+    public void removeFoodItem(int id) throws Exception {
+        foodDao.removeFoodItem(id);
     }
 }

@@ -45,7 +45,7 @@ public class ShoppingCart {
      * @param order takes a CartOrder object containing food information and its quantity
      */
     public void addOrUpdateOrderToCart(CartOrder order) {
-        String cartOrderFoodId=order.getFood().getFoodId();
+        String cartOrderFoodId = Integer.toString(order.getFood().getFoodId());
         if(orders.containsKey(cartOrderFoodId)){
             CartOrder currentOrder=orders.get(cartOrderFoodId);
             currentOrder.setFoodQuantity(currentOrder.getFoodQuantity()+order.getFoodQuantity());
@@ -57,7 +57,7 @@ public class ShoppingCart {
     }
 
     public void removeOrderFromCart (CartOrder order) {
-        String cartOrderFoodId=order.getFood().getFoodId();
+        String cartOrderFoodId = Integer.toString(order.getFood().getFoodId());
         orders.remove(cartOrderFoodId);
     }
 }
