@@ -44,5 +44,6 @@ public class FoodServiceStub implements IFoodService {
 
     @Override
     public void removeFoodItem(String id) {
+
     }
 }
