@@ -112,19 +112,15 @@ public class FastFoodController {
      * @return the newly created food object.
      */
     @PostMapping(value="/Food", consumes ="application/json", produces = "application/json")
-    public ResponseEntity createFood(@RequestBody Food food){
-        try {
-            Food createdFood = foodService.createFoodItem(food);
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-            return new ResponseEntity(createdFood, headers, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            logger.log(Level.WARNING, "Failed to create food item");
-            return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-            /*TO DO Logging*/
-        }
+    public Food createFood(@RequestBody Food food){
+    try {
+        foodService.createFoodItem(food);
+    } catch (Exception e){
+        logger.log(Level.WARNING, "Failed to create food item");
     }
+    return food;
+    }
+
 
     @PostMapping(value="/Food/{id}/", consumes ="application/json", produces = "application/json")
     public ResponseEntity updateFood(@PathVariable("id") int id, @RequestBody Food food){
