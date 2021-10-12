@@ -113,10 +113,13 @@ public class FastFoodController {
      */
     @PostMapping(value="/Food", consumes ="application/json", produces = "application/json")
     public Food createFood(@RequestBody Food food){
+    Food newFood = null;
     try {
         foodService.createFoodItem(food);
     } catch (Exception e){
-        logger.log(Level.WARNING, "Failed to create food item");
+        logger.log(Level.WARNING, "Failed to create item of" 
+                + " ID: " + food.getFoodId()
+                + " for food " + food.getFoodName());
     }
     return food;
     }
