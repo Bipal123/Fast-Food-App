@@ -32,7 +32,7 @@ public interface IFoodService {
      * @param food This is a Food object containing details that will be saved in the db.
      * @return Returns the created Food Object
      */
-    Food createFoodItem(Food food) throws Exception;
+    void createFoodItem(Food food);
 
     /**
      * This method is used to update details about an existing food Item based off of its foodId value.

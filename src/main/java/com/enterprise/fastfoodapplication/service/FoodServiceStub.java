@@ -32,8 +32,7 @@ public class FoodServiceStub implements IFoodService {
     }
 
     @Override
-    public Food createFoodItem(Food food) throws  Exception{
-        return foodDao.createFoodItem(food);
+    public void createFoodItem(Food food){
     }
 
     @Override
