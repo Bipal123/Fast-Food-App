@@ -1,4 +1,4 @@
-package com.enterprise.fastfoodapplication;
+package com.enterprise.fastfoodapplication.controller;
 
 import com.enterprise.fastfoodapplication.dto.Food;
 import com.enterprise.fastfoodapplication.dto.OrderHistory;
@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,7 +30,7 @@ import java.util.logging.Logger;
 @Controller
 public class FastFoodController {
 
-    private static final Logger logger = Logger.getLogger("com.enterprise.fastfoodapplication.FastFoodController");
+    private static final Logger logger = Logger.getLogger("com.enterprise.fastfoodapplication.controller.FastFoodController");
 
     @Autowired
     IFoodService foodService;
@@ -48,23 +50,13 @@ public class FastFoodController {
     }
 
     /**
-     * This is for search bar on the navigation bar.
-     * This happens when the user click "search".
-     * */
-    @GetMapping("/SearchFood")
-    public ResponseEntity searchFood(@RequestParam(value="searchTerm",required = false,defaultValue = "None") String searchTerm){
-        String newSearchTerm = searchTerm + "";
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    /**
      *This is for fetch, post and delete.
      *
      * */
-    @GetMapping("/Food")
-    public ResponseEntity fetchAllFood(){
-        try {
-            List<Food> allFood = foodService.getAllFoodItems();
+    @GetMapping(value="/SearchFood", consumes="application/json", produces="application/json")
+    public ResponseEntity fetchAllFood(@RequestParam(value="searchTerm",required = false,defaultValue = "None") String searchTerm){
+            try {
+            List<Food> allFood = foodService.getAllFoodItems(searchTerm);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(allFood, headers, HttpStatus.OK);
@@ -72,6 +64,24 @@ public class FastFoodController {
             e.printStackTrace();
             return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
             /*TO DO Logging*/
+        }
+
+    }
+    /**
+     * This is for search bar on the navigation bar.
+     * This happens when the user click "search".
+     *
+     * @return
+     * */
+    @GetMapping("/SearchFood")
+    public String searchFood(@RequestParam(value="searchTerm",required = false,defaultValue = "None") String searchTerm, Model model) {
+        try {
+            List<Food> allFood = foodService.getAllFoodItems(searchTerm);
+            model.addAttribute("allFood", allFood);
+            return "allFood";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
         }
 
     }
