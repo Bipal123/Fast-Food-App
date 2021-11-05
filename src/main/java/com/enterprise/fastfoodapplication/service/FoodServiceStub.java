@@ -27,7 +27,7 @@ public class FoodServiceStub implements IFoodService {
     }
 
     @Override
-    public List<Food> getAllFoodItems() throws Exception {
+    public List<Food> getAllFoodItems(String searchTerm) throws Exception {
         return foodDao.getAllFoodItems();
     }
 

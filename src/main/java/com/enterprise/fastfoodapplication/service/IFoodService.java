@@ -23,8 +23,9 @@ public interface IFoodService {
      * This method is used to return a HashMap of all the food items that exist within the database. Return NULL
      * if food Table is empty in database.
      * @return a HashMap that has String as key and Food object as value.
+     * @param searchTerm
      */
-    List<Food> getAllFoodItems() throws Exception;
+    List<Food> getAllFoodItems(String searchTerm) throws Exception;
 
     /**
      * This method invokes another method within the DAO (persistence) package and save the Food item
