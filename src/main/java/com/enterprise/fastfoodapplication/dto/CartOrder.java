@@ -5,6 +5,11 @@ import lombok.Data;
 public @Data
 class CartOrder {
 
+    private ShopperDTO shopper;
+    private int orderId;
+    private Food food;
+    private int foodQuantity;
+
     public CartOrder(){
     }
 
@@ -17,8 +22,7 @@ class CartOrder {
         this.food = food;
     }
 
-    private Food food;
-    private int foodQuantity;
+
 
     /**
      * To calculate the total cost for a particular food item in a cart
