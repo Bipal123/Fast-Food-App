@@ -50,4 +50,5 @@ public interface IFoodService {
      */
     void removeFoodItem(int id) throws Exception;
 
+    Food getFoodByCategory(String category) throws Exception;
 }

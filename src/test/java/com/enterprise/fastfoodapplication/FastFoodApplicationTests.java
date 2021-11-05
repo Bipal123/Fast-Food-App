@@ -2,6 +2,7 @@ package com.enterprise.fastfoodapplication;
 
 import com.enterprise.fastfoodapplication.dao.IFoodDao;
 import com.enterprise.fastfoodapplication.dto.Food;
+import com.enterprise.fastfoodapplication.dto.ShoppingCart;
 import com.enterprise.fastfoodapplication.service.FoodServiceStub;
 import com.enterprise.fastfoodapplication.service.IFoodService;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,10 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest
 class FastFoodApplicationTests {
 
+    @Autowired
     private IFoodService foodService;
     private Food food = new Food();
+
 
     @MockBean
     private IFoodDao foodDao;
@@ -73,5 +76,18 @@ class FastFoodApplicationTests {
         assertEquals(food, createdFood);
         verify(foodDao, atLeastOnce()).createFoodItem(food);
     }
+    @Test
+    void searchByCategorySnacks_returnsStringSnacks()throws Exception{
+        whenCategoryIsSnacks();
+        thenReturnFoodCategorySnacks();
+    }
 
+    private void whenCategoryIsSnacks() throws Exception {
+        food = foodService.getFoodByCategory("snacks");
+    }
+
+    private void thenReturnFoodCategorySnacks() throws Exception{
+        String foodCategory = food.getFoodCategory();
+        assertEquals("Snacks", foodCategory);
+    }
 }
