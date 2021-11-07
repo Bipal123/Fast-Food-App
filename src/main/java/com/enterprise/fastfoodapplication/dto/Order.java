@@ -3,20 +3,21 @@ package com.enterprise.fastfoodapplication.dto;
 import lombok.Data;
 
 public @Data
-class CartOrder {
+class Order {
 
-    public CartOrder(){
+    public Order(){
     }
 
-    public CartOrder(Food food){
+    public Order(Food food){
         this.food = food;
         this.foodQuantity = 1;
     }
 
-    public CartOrder(Food food, int foodQuantity) {
+    public Order(Food food, int foodQuantity) {
         this.food = food;
     }
 
+    private String orderId;
     private Food food;
     private int foodQuantity;
 
