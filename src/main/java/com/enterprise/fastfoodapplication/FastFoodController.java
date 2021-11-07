@@ -101,7 +101,7 @@ public class FastFoodController {
         return food;
     }
     @PostMapping(value="/Food/{id}/", consumes ="application/json", produces = "application/json")
-    public Food updateFood(@PathVariable("id") int id){
+    public Food updateFood(@PathVariable("id") int id) throws Exception {
         Food newFood;
         newFood = foodService.getFoodItemById(id);
         foodService.updateFoodItem(id);

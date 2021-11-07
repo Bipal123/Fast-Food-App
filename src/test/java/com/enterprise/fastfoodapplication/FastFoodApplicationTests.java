@@ -39,7 +39,7 @@ class FastFoodApplicationTests {
         foodService = new FoodServiceStub(foodDao);
     }
 
-    private void whenSearchFoodWithID9() {
+    private void whenSearchFoodWithID9() throws Exception {
         food = foodService.getFoodItemById(9);
     }
 
