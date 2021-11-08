@@ -30,16 +30,6 @@ public class ShoppingCart {
     }
 
     /**
-     * Returns details of a order for a given cart based on its foodId
-     * @param foodId a unique identifier to represent a Food object
-     * @return a CartOrder object which contains food details and its quantity for this cart
-     */
-    public CartOrder getOrderDetailsInCart(String foodId) {
-        //TO DO Implementation
-        return null;
-    }
-
-    /**
      * To add or update an order to your cart. If the food item exists, then update quantity. Otherwise, add
      * a new order in the orders HashMap
      * @param order takes a CartOrder object containing food information and its quantity
