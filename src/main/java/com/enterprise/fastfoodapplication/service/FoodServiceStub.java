@@ -3,18 +3,17 @@ package com.enterprise.fastfoodapplication.service;
 import com.enterprise.fastfoodapplication.dao.IFoodDao;
 import com.enterprise.fastfoodapplication.dto.Food;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class FoodServiceStub implements IFoodService {
 
     @Autowired
     private IFoodDao foodDao;
 
     public FoodServiceStub() {
-
     }
 
     public FoodServiceStub(IFoodDao foodDao) {
