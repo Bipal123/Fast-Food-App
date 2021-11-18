@@ -52,9 +52,9 @@
             <h4> A restaurant is a place where you can enjoy the food you like with your family and friends.
             Use this application to order online so you can skip the line and get your food faster. Enjoy your meal!</h4>
 
-            <button class="btn btn-info"> Create Your Order </button>
+            <a th:href="@{/category}"><button class="btn btn-primary">Create your order!</button></a>
 
-             <p3> <br>Don't have an account with us? Sign Up </p3>
+            <p3> <br>Don't have an account with us? <a href="#jumbotron">Sign Up</a></p3>
         </div>
 
         <div class="col-md-9">
@@ -90,7 +90,7 @@
 </div>
 
 
-<div class="jumbotron">
+<div class="jumbotron" id="jumbotron">
     <form action="action_page.php" style="border:1px solid #ccc">
         <div class="container" style="padding-top: 1%; padding-bottom: 1%">
           <h1>Sign Up</h1>
