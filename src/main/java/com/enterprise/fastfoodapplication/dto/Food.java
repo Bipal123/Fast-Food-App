@@ -1,12 +1,19 @@
 package com.enterprise.fastfoodapplication.dto;
 
 import lombok.Data;
-import org.springframework.web.multipart.MultipartFile;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity
 public @Data
 class Food {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int foodId;
+
     private String foodName;
     private String foodCategory;
     private String foodDescription;
