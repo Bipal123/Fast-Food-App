@@ -9,21 +9,21 @@ public class ShoppingCart {
      * and don't see a reason as to why we'd need this id honestly
      */
     private String shoppingId;
-    private Map<String, CartOrder> orders; //We can probably use foodId as key in this Map object
+    private Map<String, Order> orders; //We can probably use foodId as key in this Map object
 
     public ShoppingCart() {
-        orders = new HashMap<String, CartOrder>();
+        orders = new HashMap<String, Order>();
     }
 
     public ShoppingCart(String shoppingId) {
         this.shoppingId = shoppingId;
-        orders = new HashMap<String, CartOrder>();
+        orders = new HashMap<String, Order>();
     }
 
     public double totalEstimatedCostOfEntireCart()
     {
         double estimatedTotal = 0;
-        for (CartOrder order : orders.values()) {
+        for (Order order : orders.values()) {
             estimatedTotal += order.getFood().getFoodPrice()*order.getFoodQuantity();
         }
         return estimatedTotal;
@@ -32,9 +32,9 @@ public class ShoppingCart {
     /**
      * Returns details of a order for a given cart based on its foodId
      * @param foodId a unique identifier to represent a Food object
-     * @return a CartOrder object which contains food details and its quantity for this cart
+     * @return a Order object which contains food details and its quantity for this cart
      */
-    public CartOrder getOrderDetailsInCart(String foodId) {
+    public Order getOrderDetailsInCart(String foodId) {
         //TO DO Implementation
         return null;
     }
@@ -42,12 +42,12 @@ public class ShoppingCart {
     /**
      * To add or update an order to your cart. If the food item exists, then update quantity. Otherwise, add
      * a new order in the orders HashMap
-     * @param order takes a CartOrder object containing food information and its quantity
+     * @param order takes a Order object containing food information and its quantity
      */
-    public void addOrUpdateOrderToCart(CartOrder order) {
+    public void addOrUpdateOrderToCart(Order order) {
         String cartOrderFoodId = Integer.toString(order.getFood().getFoodId());
         if(orders.containsKey(cartOrderFoodId)){
-            CartOrder currentOrder=orders.get(cartOrderFoodId);
+            Order currentOrder=orders.get(cartOrderFoodId);
             currentOrder.setFoodQuantity(currentOrder.getFoodQuantity()+order.getFoodQuantity());
             orders.put(cartOrderFoodId,currentOrder);
         }
@@ -56,7 +56,7 @@ public class ShoppingCart {
         }
     }
 
-    public void removeOrderFromCart (CartOrder order) {
+    public void removeOrderFromCart (Order order) {
         String cartOrderFoodId = Integer.toString(order.getFood().getFoodId());
         orders.remove(cartOrderFoodId);
     }

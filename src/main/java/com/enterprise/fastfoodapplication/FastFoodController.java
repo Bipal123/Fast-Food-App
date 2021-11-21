@@ -70,8 +70,8 @@ public class FastFoodController {
             return new ResponseEntity(allFood, headers, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-            /*TO DO Logging*/
+            logger.warning(e.getMessage());
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

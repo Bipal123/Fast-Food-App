@@ -2,21 +2,17 @@ package com.enterprise.fastfoodapplication.dto;
 
 import lombok.Data;
 
+/*
+Order class holds food and quantity
+cartID - used to create order stub until submitted as order
+orderID - populated when order is created. used for order history queries
+* */
+
 public @Data
-class CartOrder {
+class Order {
 
-    public CartOrder(){
-    }
-
-    public CartOrder(Food food){
-        this.food = food;
-        this.foodQuantity = 1;
-    }
-
-    public CartOrder(Food food, int foodQuantity) {
-        this.food = food;
-    }
-
+    private String orderId;
+    private String cartId;
     private Food food;
     private int foodQuantity;
 
