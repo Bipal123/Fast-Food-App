@@ -48,8 +48,13 @@ public class FastFoodController {
     }
 
     /**
-     * This is for search bar on the navigation bar.
-     * This happens when the user click "search".
+     * This method is mapped for the search bar on
+     * the navigation bar. This happens when the 
+     * user clicks "search".
+     * @param searchTerm is what is contained in the
+     * navigation bar when searched.
+     * @return HttpStatus.OK is sent as the
+     * ResponseEntity method parameter.
      * */
     @GetMapping("/SearchFood")
     public ResponseEntity searchFood(@RequestParam(value="searchTerm",required = false,defaultValue = "None") String searchTerm){

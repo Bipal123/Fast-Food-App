@@ -5,20 +5,20 @@ import lombok.Data;
 public @Data
 class CartOrder {
 
+    private Food food;
+    private int foodQuantity;
+    
     public CartOrder(){
+    }
+    
+    public CartOrder(Food food, int foodQuantity) {
+        this.food = food;
     }
 
     public CartOrder(Food food){
         this.food = food;
         this.foodQuantity = 1;
-    }
-
-    public CartOrder(Food food, int foodQuantity) {
-        this.food = food;
-    }
-
-    private Food food;
-    private int foodQuantity;
+    }  
 
     /**
      * To calculate the total cost for a particular food item in a cart
