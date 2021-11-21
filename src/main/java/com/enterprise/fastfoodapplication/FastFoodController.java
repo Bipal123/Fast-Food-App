@@ -69,11 +69,9 @@ public class FastFoodController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(allFood, headers, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Failed to fetch all food items", e);
             return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-            /*TO DO Logging*/
         }
-
     }
 
     /**
@@ -95,7 +93,7 @@ public class FastFoodController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(foundFood, headers, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, "Failed to fetch food item of id: " + Integer.toString(id), e);
             return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
             /*TO DO Logging*/
         }
@@ -119,10 +117,8 @@ public class FastFoodController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(createdFood, headers, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.log(Level.WARNING, "Failed to create food item");
+            logger.log(Level.WARNING, "Failed to create food item", e);
             return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-            /*TO DO Logging*/
         }
     }
 
@@ -134,21 +130,19 @@ public class FastFoodController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(updateFoodItem, headers, HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-            logger.log(Level.WARNING, "Failed to create food item");
+            logger.log(Level.WARNING, "Failed to update food item", e);
             return  new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-            /*TO DO Logging*/
         }
     }
 
     @DeleteMapping("/Food/{id}/")
-    public ResponseEntity removeFood(@PathVariable("id") String id){
+    public ResponseEntity removeFood(@PathVariable("id") int id){
         try {
-            foodService.removeFoodItem(Integer.parseInt(id));
+            foodService.removeFoodItem(id);
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
+            logger.log(Level.WARNING, "Failed to delete food item of id: " + Integer.toString(id) , e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
-            /*TO DO Logging*/
         }
     }
 }
