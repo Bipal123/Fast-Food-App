@@ -3,6 +3,7 @@ package com.enterprise.fastfoodapplication.service;
 import com.enterprise.fastfoodapplication.dao.IFoodDao;
 import com.enterprise.fastfoodapplication.dto.Food;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,11 +23,13 @@ public class FoodServiceStub implements IFoodService {
     }
 
     @Override
+    @Cacheable(value="Food")
     public Food getFoodItemById(int id) throws Exception {
         return foodDao.getFoodItemById(id);
     }
 
     @Override
+    @Cacheable(value="List<Food>")
     public List<Food> getAllFoodItems() throws Exception {
         return foodDao.getAllFoodItems();
     }
