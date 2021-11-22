@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class FoodServiceStub implements IFoodService {
+public class FoodService implements IFoodService {
 
     @Autowired
     private IFoodDao foodDao;
 
-    public FoodServiceStub() {
+    public FoodService() {
 
     }
 
-    public FoodServiceStub(IFoodDao foodDao) {
+    public FoodService(IFoodDao foodDao) {
         this.foodDao = foodDao;
     }
 

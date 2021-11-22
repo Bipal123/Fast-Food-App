@@ -2,7 +2,7 @@ package com.enterprise.fastfoodapplication;
 
 import com.enterprise.fastfoodapplication.dao.IFoodDao;
 import com.enterprise.fastfoodapplication.dto.Food;
-import com.enterprise.fastfoodapplication.service.FoodServiceStub;
+import com.enterprise.fastfoodapplication.service.FoodService;
 import com.enterprise.fastfoodapplication.service.IFoodService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -36,7 +36,7 @@ class FastFoodApplicationTests {
 
     private void givenFoodsDataAreAvailable() throws Exception {
         Mockito.when(foodDao.createFoodItem(food)).thenReturn(food);
-        foodService = new FoodServiceStub(foodDao);
+        foodService = new FoodService(foodDao);
     }
 
     private void whenFoodWithID9HasNameItalianPizza() throws Exception {

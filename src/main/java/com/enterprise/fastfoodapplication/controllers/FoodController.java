@@ -1,4 +1,4 @@
-package com.enterprise.fastfoodapplication;
+package com.enterprise.fastfoodapplication.controllers;
 
 import com.enterprise.fastfoodapplication.dto.Food;
 import com.enterprise.fastfoodapplication.dto.OrderHistory;
@@ -26,26 +26,12 @@ import java.util.logging.Logger;
  * @author Bipal Goyal
  */
 @Controller
-public class FastFoodController {
+public class FoodController {
 
-    private static final Logger logger = Logger.getLogger("com.enterprise.fastfoodapplication.FastFoodController");
+    private static final Logger logger = Logger.getLogger(String.valueOf(FoodController.class));
 
     @Autowired
     IFoodService foodService;
-
-    @RequestMapping("/")
-    public String index(Model model) {
-        /*
-          Need an orderHistory class to store the name and number of Items a customer ordered.
-          This happens when the user click "check out".
-          The "check out" button act like a "save" button to store the information of order in OrderHistory class.
-          */
-        OrderHistory orderHistory= new OrderHistory();
-        orderHistory.setFoodAmount(2);
-        orderHistory.setFoodName("burger");
-        model.addAttribute(orderHistory);
-        return "start";
-    }
 
     /**
      * This is for search bar on the navigation bar.
@@ -122,6 +108,16 @@ public class FastFoodController {
         }
     }
 
+    /**
+     * Updates an existing Food object, given the data provided.
+     *
+     * returns one of the following status codes:
+     * 201: successfully updated a new food.
+     *
+     * @param food a JSON representation of a food object.
+     * @param id represents the id of the food object to be updated.
+     * @return the newly created food object.
+     */
     @PostMapping(value="/Food/{id}/", consumes ="application/json", produces = "application/json")
     public ResponseEntity updateFood(@PathVariable("id") int id, @RequestBody Food food){
         try {
