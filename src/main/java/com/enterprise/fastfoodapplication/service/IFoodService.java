@@ -1,7 +1,10 @@
 package com.enterprise.fastfoodapplication.service;
 
 import com.enterprise.fastfoodapplication.dto.Food;
+import com.enterprise.fastfoodapplication.dto.Photo;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -49,5 +52,7 @@ public interface IFoodService {
      * @param id It is an int that is compared with foodId
      */
     void removeFoodItem(int id) throws Exception;
+
+    void saveImage(MultipartFile imageFile, Photo photo) throws IOException;
 
 }
