@@ -46,7 +46,7 @@ public interface IFoodService {
     /** This method is used to remove an existing food Item based off of its foodId value.
      * We probably need to invoke a delete operation within the persistence layer and pass it id as our parameter.
      * Throw exception if there is no food with foodId == id.
-     * @param id It is a string (maybe int?) that is compared with foodId
+     * @param id It is an int that is compared with foodId
      */
     void removeFoodItem(int id) throws Exception;
 

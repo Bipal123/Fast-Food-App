@@ -3,6 +3,7 @@ package com.enterprise.fastfoodapplication.service;
 import com.enterprise.fastfoodapplication.dao.IFoodDao;
 import com.enterprise.fastfoodapplication.dto.Food;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
@@ -23,13 +24,13 @@ public class FoodService implements IFoodService {
     }
 
     @Override
-    @Cacheable(value="Food")
+    @Cacheable(value="food", key="#id")
     public Food getFoodItemById(int id) throws Exception {
         return foodDao.getFoodItemById(id);
     }
 
     @Override
-    @Cacheable(value="List<Food>")
+    @Cacheable("foods")
     public List<Food> getAllFoodItems() throws Exception {
         return foodDao.getAllFoodItems();
     }
@@ -45,6 +46,7 @@ public class FoodService implements IFoodService {
     }
 
     @Override
+    @CacheEvict(value="food", key="#id")
     public void removeFoodItem(int id) throws Exception {
         foodDao.removeFoodItem(id);
     }
