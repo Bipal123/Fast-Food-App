@@ -2,6 +2,7 @@ package com.enterprise.fastfoodapplication.controllers;
 
 import com.enterprise.fastfoodapplication.dto.Food;
 import com.enterprise.fastfoodapplication.dto.OrderHistory;
+import com.enterprise.fastfoodapplication.dto.Photo;
 import com.enterprise.fastfoodapplication.service.IFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -11,6 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -140,5 +145,42 @@ public class FoodController {
             logger.log(Level.WARNING, "Failed to delete food item of id: " + Integer.toString(id) , e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @RequestMapping("/createFoodForm")
+    public String createFoodForm(Model model) {
+        Food food = new Food();
+        model.addAttribute(food);
+        return "createFood";
+    }
+
+
+    @PostMapping("/saveFood")
+    public ModelAndView saveFood(Food food, @RequestParam("imageFile") MultipartFile imageFile, Model model) {
+        String returnValue = "createFood";
+        ModelAndView modelAndView = new ModelAndView();
+        try {
+            foodService.createFoodItem(food);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            return modelAndView;
+        }
+
+        Photo photo = new Photo();
+        try {
+            photo.setFileName(imageFile.getOriginalFilename());
+            photo.setFood(food);
+            foodService.saveImage(imageFile, photo);
+            model.addAttribute("food", food);
+            modelAndView.setViewName("success");
+        } catch (IOException e) {
+            e.printStackTrace();
+            modelAndView.setViewName("error");
+            return modelAndView;
+        }
+        modelAndView.addObject("photo", photo);
+        modelAndView.addObject("food", food);
+        return modelAndView;
     }
 }

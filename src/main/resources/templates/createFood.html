@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new food item</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <p>Use this form to create food items and store them in database!</p>
+    <form action="#" th:action="@{/saveFood}" th:object="${food}" enctype="multipart/form-data"  method="POST"><br />
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="foodName">Food Name</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodName" th:field="*{foodName}"/>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="foodCategory">Food Category</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodCategory" th:field="*{foodCategory}"/>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="foodDescription">Food Description</span>
+            </div>
+            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodDescription" th:field="*{foodDescription}"/>
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="foodPrice">Food Price</span>
+            </div>
+            <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodPrice" th:field="*{foodPrice}"/>
+        </div>
+        <input type="file" name="imageFile"/>
+        <button name="submit" type="submit" value="0">Submit</button>
+    </form>
+</body>
+</html>
