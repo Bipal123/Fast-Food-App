@@ -179,8 +179,6 @@ public class FoodController {
             modelAndView.setViewName("error");
             return modelAndView;
         }
-        modelAndView.addObject("photo", photo);
-        modelAndView.addObject("food", food);
         return modelAndView;
     }
 }

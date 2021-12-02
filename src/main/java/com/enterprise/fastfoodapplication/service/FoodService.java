@@ -37,7 +37,6 @@ public class FoodService implements IFoodService {
     }
 
     @Override
-    @Cacheable("foods")
     public List<Food> getAllFoodItems() throws Exception {
         return foodDao.getAllFoodItems();
     }

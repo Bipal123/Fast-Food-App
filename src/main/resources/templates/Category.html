@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Category</title>
     <meta charset="utf-8">
@@ -13,30 +13,28 @@
     </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-<div th:replace="fragments/topnav :: navbar"></div>
-<div class="container-fluid" style="padding-top: 10%; padding-bottom: 10%">
-    <h1> Our best sales </h1><br>
-    <div class="row">
-        <div class="col-md-4">
-            <img src="https://assets.rbl.ms/21629003/origin.jpg" style="width:100%; height:100%">
-            <h5> Burger</h5>
-            <p>A large single or triple burger with all toppings of cheeses, lettuce, tomatoes, onions, and select sauces. </p>
+    <div th:replace="fragments/topnav :: navbar"></div>
+
+    <div class="container-fluid" style="padding-top: 10%; padding-bottom: 10%">
+        <h1>What we offer!</h1>
+        <br>
+        <div class="row">
+            <div th:each="food : ${foods}">
+                <div class="col-md-4">
+                    <div th:each="photo : ${food.photos}">
+                        <img height="250" width="250" th:src="@{${'/photos/' + photo.fileName}}">
+                    </div>
+                </div>
+                <b></b><h4 th:text="${food.getFoodName()}"></h4></b>
+                <h6 th:text="'Category: ' + ${food.getFoodCategory()}"></h6>
+                <h6 th:text="'Description: ' + ${food.getFoodDescription()}"></h6>
+                <h6 th:text="'Price: $' + ${food.getFoodPrice()}"></h6>
+            </div>
         </div>
     </div>
-    <div class="col-md-4">
-    <img src="https://img.taste.com.au/u6QNJNgV/taste/2016/11/roast-pumpkin-and-chorizo-pizzas-111258-1.jpg" style="width:100%; height:100%">
-        <h5> Pizza</h5>
-        <p> A small, medium, or large with topping choices of plant based sausage, red onion, tomato, fresh thyme, mozzarella, and tomato or alfredo sauces. </p>
-    </div>
-    <div class="col-md-4">
-        <img src="https://www.thechunkychef.com/wp-content/uploads/2015/07/Hormel-Natural-Choice-Deli-Meats-20-1024x989.jpg" style="width:100%; height:100%">
-        <h5> Sandwich</h5>
-        <p> Slow cooked beef or pulled pork sandwich with various choices of cheeses, and vegetables. </p>
-    </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>
