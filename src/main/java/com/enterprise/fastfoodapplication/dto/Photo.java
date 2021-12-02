@@ -15,7 +15,6 @@ class Photo {
     private int photoId;
     private String path;
     private String fileName;
-    private String comments;
 
     @ToString.Exclude
     @ManyToOne
