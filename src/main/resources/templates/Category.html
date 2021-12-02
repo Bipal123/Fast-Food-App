@@ -13,63 +13,28 @@
     </style>
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
-
-<div class="navbar navbar-expand-sm  bg-light navbar-light fixed-top">
-    <div class="logo">
-        <a href="#">
-            <img src="https://i.loli.net/2021/10/25/e2SlnkiZwKRDVpC.png" alt="Logo" style="width:50px;">
-        </a>
-    </div>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/start}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/category}">Category</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/shoppingcart}">Shopping Cart</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/recentorders}">Recent Orders</a>
-        </li>
-    </ul>
-    <form class="form-inline" action="#" th:action="@{/Food}" method="get">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchTerm">
-        <button class="btn btn-success" type="submit" vaue="0">Search</button>
-    </form>
-    <a class="navbar-brand" th:href="@{/shoppingcart}">
-        <img src="https://i.loli.net/2021/10/25/jOR4xK618zc7Meu.png" alt="Shopping Cart" style="width:40px;">
-    </a>
-</div>
+<div th:replace="fragments/topnav :: navbar"></div>
 
 
 <div class="container-fluid" style="padding-top: 10%; padding-bottom: 10%">
-
     <h1> Our best sales </h1><br>
-
     <div class="row">
-
-    <div class="col-md-4">
-        <img src="https://assets.rbl.ms/21629003/origin.jpg" style="width:100%; height:100%">
-        <h5> Burger</h5>
+        <div class="col-md-4">
+            <img src="https://assets.rbl.ms/21629003/origin.jpg" style="width:100%; height:100%">
+            <h5> Burger</h5>
             <p>A large single or triple burger with all toppings of cheeses, lettuce, tomatoes, onions, and select sauces. </p>
+        </div>
     </div>
-
     <div class="col-md-4">
     <img src="https://img.taste.com.au/u6QNJNgV/taste/2016/11/roast-pumpkin-and-chorizo-pizzas-111258-1.jpg" style="width:100%; height:100%">
         <h5> Pizza</h5>
         <p> A small, medium, or large with topping choices of plant based sausage, red onion, tomato, fresh thyme, mozzarella, and tomato or alfredo sauces. </p>
     </div>
-
     <div class="col-md-4">
         <img src="https://www.thechunkychef.com/wp-content/uploads/2015/07/Hormel-Natural-Choice-Deli-Meats-20-1024x989.jpg" style="width:100%; height:100%">
         <h5> Sandwich</h5>
         <p> Slow cooked beef or pulled pork sandwich with various choices of cheeses, and vegetables. </p>
     </div>
-
 </div>
 
 

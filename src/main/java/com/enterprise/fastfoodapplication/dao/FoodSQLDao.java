@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("foodDao")
+@Repository
 public class FoodSQLDao implements IFoodDao {
 
     @Autowired
