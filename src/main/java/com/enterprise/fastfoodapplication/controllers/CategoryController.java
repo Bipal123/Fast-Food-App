@@ -1,5 +1,6 @@
 package com.enterprise.fastfoodapplication.controllers;
 import com.enterprise.fastfoodapplication.dto.Food;
+import com.enterprise.fastfoodapplication.dto.OrderHistory;
 import com.enterprise.fastfoodapplication.service.IFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,18 +19,21 @@ public class CategoryController {
     private IFoodService iFoodservice;
 
     @GetMapping("/category")
-    public ModelAndView getCategory() throws Exception {
+    public ModelAndView getCategory(Model model) {
         ModelAndView modelAndView = new ModelAndView();
-
-            modelAndView.setViewName("Category");
+        try {
             List<Food> foods = iFoodservice.getAllFoodItems();
             modelAndView.addObject("foods", foods);
-            return  modelAndView;
 
-        /*
+        }
         catch (Exception e) {
             modelAndView.setViewName("error");
             return modelAndView;
-        }*/
+        }
+        modelAndView.setViewName("Category");
+        OrderHistory order = new OrderHistory();
+        model.addAttribute(order);
+        modelAndView.addObject("order", order);
+        return  modelAndView;
     }
 }

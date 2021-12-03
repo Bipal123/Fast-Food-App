@@ -15,34 +15,37 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-    <p>Use this form to create food items and store them in database!</p>
-    <form action="#" th:action="@{/saveFood}" th:object="${food}" enctype="multipart/form-data"  method="POST"><br />
-        <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="foodName">Food Name</span>
+    <div th:replace="fragments/topnav :: navbar"></div>
+    <div class="container-fluid" style="padding-top: 4%; padding-bottom: 1%">
+        <p>Use this form to create food items and store them in database!</p>
+        <form action="#" th:action="@{/saveFood}" th:object="${food}" enctype="multipart/form-data"  method="POST">
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="foodName">Food Name</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodName" th:field="*{foodName}"/>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodName" th:field="*{foodName}"/>
-        </div>
-        <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="foodCategory">Food Category</span>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="foodCategory">Food Category</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodCategory" th:field="*{foodCategory}"/>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodCategory" th:field="*{foodCategory}"/>
-        </div>
-        <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="foodDescription">Food Description</span>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="foodDescription">Food Description</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodDescription" th:field="*{foodDescription}"/>
             </div>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodDescription" th:field="*{foodDescription}"/>
-        </div>
-        <div class="input-group input-group-sm mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="foodPrice">Food Price</span>
+            <div class="input-group input-group-sm mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="foodPrice">Food Price</span>
+                </div>
+                <input type="number" min="0" value="0" step="0.01" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodPrice" th:field="*{foodPrice}"/>
             </div>
-            <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodPrice" th:field="*{foodPrice}"/>
-        </div>
-        <input type="file" name="imageFile"/>
-        <button name="submit" type="submit" value="0">Submit</button>
-    </form>
+            <input type="file" name="imageFile"/>
+            <button name="submit" type="submit" value="0">Submit</button>
+        </form>
+    </div>
 </body>
 </html>

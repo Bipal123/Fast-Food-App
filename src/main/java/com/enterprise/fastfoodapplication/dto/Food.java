@@ -20,5 +20,4 @@ class Food {
 
     @OneToMany(mappedBy = "food")
     private List<Photo> photos;
-
 }
