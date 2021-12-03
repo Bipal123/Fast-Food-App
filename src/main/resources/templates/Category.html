@@ -29,10 +29,10 @@
                     <h6 th:text="'Category: ' + ${food.getFoodCategory()}"></h6>
                     <h6 th:text="'Description: ' + ${food.getFoodDescription()}"></h6>
                     <h6 th:text="'Price: $' + ${food.getFoodPrice()}"></h6>
-                <form action="#" th:action="@{/saveOrder}" th:object="${order}" enctype="multipart/form-data"  method="POST"><br />
-                    <input type="number" min="0" placeholder="Quantity"class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodName" th:field="*{foodAmount}"/>
+                <form class="form-inline" action="#" th:action="@{/saveOrder}" th:object="${order}" enctype="multipart/form-data"  method="POST"><br />
                     <input type="hidden" th:value="${food.getFoodName()}" name="foodName"/>
-                    <button name="submit" type="submit" value="0">Submit</button>
+                    <input class="form-control col-6 mr-sm-2" type="number" min="0" placeholder="Quantity" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="foodName" th:field="*{foodAmount}"/>
+                    <button class="btn btn-primary my-2 my-sm-0" name="submit" min="1" type="submit" value="0">Place Order</button>
                 </form>
             </div>
         </div>
