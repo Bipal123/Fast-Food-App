@@ -23,9 +23,9 @@ public interface IFoodService {
     Food getFoodItemById(int id) throws Exception;
 
     /**
-     * This method is used to return a HashMap of all the food items that exist within the database. Return NULL
+     * This method is used to return a List of all the food items that exist within the database. Return NULL
      * if food Table is empty in database.
-     * @return a HashMap that has String as key and Food object as value.
+     * @return a List of food objects.
      */
     List<Food> getAllFoodItems() throws Exception;
 
@@ -53,6 +53,10 @@ public interface IFoodService {
      */
     void removeFoodItem(int id) throws Exception;
 
+    /** This method is used to upload an image and save its information in Photo entity.
+     * @param imageFile the image to be uploaded
+     * @param photo the object on which to save image
+     */
     void saveImage(MultipartFile imageFile, Photo photo) throws IOException;
 
 }
